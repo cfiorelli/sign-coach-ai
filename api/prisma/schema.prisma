@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  sessions  PracticeSession[]
+  progress  UserProgress[]
+}
+
+model Sign {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  imageUrl    String
+  difficulty  Int      @default(1)
+  
+  // Detailed attributes for instruction
+  handshape   String?
+  location    String?
+  orientation String?
+  movement    String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  lessons     SignLesson[]
+  attempts    PracticeAttempt[]
+  progress    UserProgress[]
+}
+
+model Lesson {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  order       Int      @default(0)
+  
+  signs       SignLesson[]
+}
+
+model SignLesson {
+  signId    String
+  lessonId  String
+  order     Int     @default(0)
+
+  sign      Sign    @relation(fields: [signId], references: [id])
+  lesson    Lesson  @relation(fields: [lessonId], references: [id])
+
+  @@id([signId, lessonId])
+}
+
+model PracticeSession {
+  id        String   @id @default(uuid())
+  userId    String
+  startedAt DateTime @default(now())
+  endedAt   DateTime?
+  
+  user      User     @relation(fields: [userId], references: [id])
+  attempts  PracticeAttempt[]
+}
+
+model PracticeAttempt {
+  id              String   @id @default(uuid())
+  sessionId       String
+  signId          String
+  timestamp       DateTime @default(now())
+  isCorrect       Boolean
+  accuracyScore   Float?   // 0.0 to 1.0
+  feedback        Json?    // Store detailed feedback from ML service
+  
+  session         PracticeSession @relation(fields: [sessionId], references: [id])
+  sign            Sign            @relation(fields: [signId], references: [id])
+}
+
+model UserProgress {
+  id        String   @id @default(uuid())
+  userId    String
+  signId    String
+  fluency   Float    @default(0.0) // 0 to 100
+  lastPracticed DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id])
+  sign      Sign     @relation(fields: [signId], references: [id])
+
+  @@unique([userId, signId])
+}

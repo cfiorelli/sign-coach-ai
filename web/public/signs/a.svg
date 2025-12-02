@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <!-- Fist shape -->
+  <rect x="80" y="60" width="40" height="60" rx="10" fill="#fbbf24" stroke="#334155" stroke-width="3"/>
+  <!-- Thumb on side -->
+  <rect x="110" y="70" width="20" height="40" rx="10" fill="#fbbf24" stroke="#334155" stroke-width="3"/>
+  <text x="100" y="180" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155">Fist, thumb on side</text>
+</svg>

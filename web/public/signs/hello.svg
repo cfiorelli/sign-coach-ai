@@ -1,0 +1,9 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <!-- Head outline -->
+  <circle cx="100" cy="80" r="30" fill="none" stroke="#334155" stroke-width="3"/>
+  <!-- Hand Saluting -->
+  <path d="M130 60 L150 50 L160 70 L140 80 Z" fill="#fbbf24" stroke="#334155" stroke-width="3"/>
+  <path d="M140 80 L140 120" stroke="#334155" stroke-width="3"/>
+  <text x="100" y="180" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155">Salute from forehead</text>
+</svg>

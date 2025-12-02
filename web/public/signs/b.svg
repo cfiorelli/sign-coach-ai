@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <!-- Open palm -->
+  <rect x="80" y="50" width="40" height="80" rx="5" fill="#fbbf24" stroke="#334155" stroke-width="3"/>
+  <!-- Thumb tucked -->
+  <path d="M90 110 L110 100" stroke="#334155" stroke-width="3"/>
+  <text x="100" y="180" font-family="Arial" font-size="14" text-anchor="middle" fill="#334155">Flat hand, thumb tucked</text>
+</svg>
